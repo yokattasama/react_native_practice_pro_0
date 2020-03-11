@@ -115,18 +115,44 @@ class LongList extends React.Component {
             { name: 'zs11', age: '20'}
         ]
     }
+     _keyExtractor(item, index) {
+        item.key = item.name + ''
+        return item.key
+        }
+     renderItem = ({item}) => {
+        return (
+            <View id={item.key} style={styles.txt}><Text>{item.name}'&'{item.age}</Text></View>
+        )
+     }
+     handlePress = () => {
+        let newDataList = [...this.state.listData]
+        newDataList.push({name: ('' + Math.random()), age: ('' + Math.random() *2)})
+        newDataList.push({name: ('' + Math.random()), age: ('' + Math.random() *2)})
+        newDataList.push({name: ('' + Math.random()), age: ('' + Math.random() *2)})
+        this.setState({
+            listData: [...newDataList]
+        })
+     }
     render (){
         return (
+        <>
             <View>
-                <FlatList data={this.state.listData} renderItem={({key,item})=> <View style={styles.txt}><Text>{item.name}  {item.age}</Text></View>} />
+                <Button onPress={this.handlePress} title='点击增加数组长度'></Button>
             </View>
+            <View>
+                <FlatList
+                keyExtractor={this._keyExtractor}
+                data={this.state.listData}
+                renderItem={this.renderItem} />
+            </View>
+        </>
         )
     }
 }
 const App: () => React$Node = () => {
   return (
     <>
-    <LongList />
+    <LongList style={styles.list} />
     </>
   );
 };
@@ -142,6 +168,10 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontSize: 40,
     fontWeight: '900'
+  },
+  list: {
+    height: 2000,
+    color: 'red'
   }
 });
 
