@@ -18,7 +18,8 @@ import {
   Button,
   Alert,
   Image,
-  FlatList
+  FlatList,
+  SectionList
 } from 'react-native';
 
 import {
@@ -149,10 +150,56 @@ class LongList extends React.Component {
         )
     }
 }
+class LongSectionList extends React.Component {
+    state = {
+        sectionListData: [
+            {title: 'D', data: ['Devin', 'Dan', 'Dominic']},
+            {title: 'J', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},
+        ],
+        Alpha: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    }
+    handlePress = () => {
+        let index = Math.floor(Math.random()*(26 - 1) + 1)
+        let newSectionData = [...this.state.sectionListData]
+        newSectionData.push({title: this.state.Alpha[index], data: [this.state.Alpha[index] + index, this.state.Alpha[index] + index + 1]})
+        this.setState({
+            sectionListData: [...newSectionData]
+        })
+    }
+    _keyExtractor (item, index) {
+        return '' + index + Math.random()
+    }
+    render () {
+        return (
+            <>
+               <Button onPress={this.handlePress} title='点击一下'/>
+               <SectionList
+                sections={this.state.sectionListData}
+                renderItem={({item}) => <Text>{item}</Text>}
+                renderSectionHeader={({section}) => <Text>{section.title}</Text>}
+                keyExtractor={this._keyExtractor}
+                />
+            </>
+        )
+    }
+}
+//    <LongList style={styles.list} />
+// <LongSectionList />
+class FlexBox extends React.Component {
+    render () {
+        return (
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View style={{ height: 100, width: 100, backgroundColor: '#985'}}></View>
+                <View style={{ height: 100, width: 100, backgroundColor: '#ff3040', flex: 1 }}></View>
+                <View style={{ height: 100, width: 100, backgroundColor: '#369', alignSelf: 'stretch'}}></View>
+            </View>
+        )
+    }
+}
 const App: () => React$Node = () => {
   return (
     <>
-    <LongList style={styles.list} />
+    <FlexBox />
     </>
   );
 };
