@@ -19,7 +19,8 @@ import {
   Alert,
   Image,
   FlatList,
-  SectionList
+  SectionList,
+  PixelRatio
 } from 'react-native';
 
 import {
@@ -116,14 +117,12 @@ class LongList extends React.Component {
             { name: 'zs11', age: '20', id: '1132'}
         ]
     }
-<<<<<<< HEAD
     _keyExtractor = (item, index) => item.id
     renderListItem = ({item})=> {
         return(
             <View id={item.id} style={styles.txt}><Text>{item.name}  {item.age}</Text></View>
         )
     }
-=======
      _keyExtractor(item, index) {
         item.key = item.name + ''
         return item.key
@@ -142,14 +141,11 @@ class LongList extends React.Component {
             listData: [...newDataList]
         })
      }
->>>>>>> 91629bf47348e47fc66cdc093cd5186b47966822
     render (){
         return (
         <>
             <View>
-<<<<<<< HEAD
                 <FlatList data={this.state.listData} keyExtractor={this._keyExtractor} renderItem={this.renderListItem} />
-=======
                 <Button onPress={this.handlePress} title='点击增加数组长度'></Button>
             </View>
             <View>
@@ -204,7 +200,6 @@ class FlexBox extends React.Component {
                 <View style={{ height: 100, width: 100, backgroundColor: '#985'}}></View>
                 <View style={{ height: 100, width: 100, backgroundColor: '#ff3040', flex: 1 }}></View>
                 <View style={{ height: 100, width: 100, backgroundColor: '#369', alignSelf: 'stretch'}}></View>
->>>>>>> 91629bf47348e47fc66cdc093cd5186b47966822
             </View>
         )
     }
@@ -256,19 +251,45 @@ class MyAppHeaderText extends React.Component {
         )
     }
 }
+//<LongList />
+//    <FlexBox />
+//<ViewSample></ViewSample>
+//<View>
+//    <MyAppHeaderText txt='用作标题的文字，独有样式'></MyAppHeaderText>
+//    <Text>正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字</Text>
+//</View>
+class Adv extends React.Component {
+    render () {
+        return (
+            <>
+                <View style={styles.father}>
+                    <View style={[styles.son]}>
+                        <Text style={[styles.center, { lineHeight: 80 }]}>酒店</Text>
+                    </View>
+                    <View style={[styles.son, styles.leftRightBorder]}>
+                        <View style={styles.bottomBorder}>
+                            <Text style={[styles.center, { lineHeight: 40, }]}>海外酒店</Text>
+                        </View>
+                        <View>
+                            <Text style={[styles.center, { lineHeight: 40 }]}>特价酒店</Text>
+                        </View>
+                    </View>
+                    <View style={styles.son}>
+                    <View style={styles.bottomBorder}>
+                        <Text style={[styles.center, { lineHeight: 40, }]}>团购</Text>
+                    </View>
+                    <View>
+                        <Text style={[styles.center, { lineHeight: 40 }]}>客栈</Text>
+                    </View></View>
+                </View>
+            </>
+        )
+    }
+}
 const App: () => React$Node = () => {
   return (
     <>
-<<<<<<< HEAD
-        <LongList />
-        <ViewSample></ViewSample>
-        <View>
-            <MyAppHeaderText txt='用作标题的文字，独有样式'></MyAppHeaderText>
-            <Text>正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字</Text>
-        </View>
-=======
-    <FlexBox />
->>>>>>> 91629bf47348e47fc66cdc093cd5186b47966822
+        <Adv />
     </>
   );
 };
@@ -289,19 +310,42 @@ const styles = StyleSheet.create({
   txt: {
     color: 'blue',
     fontSize: 40,
-<<<<<<< HEAD
     fontWeight: '900',
     textAlign: 'center'
   },
   box: {
-    backgroundColor: '#09e'
-=======
+    backgroundColor: '#09e',
     fontWeight: '900'
   },
   list: {
     height: 2000,
     color: 'red'
->>>>>>> 91629bf47348e47fc66cdc093cd5186b47966822
+  },
+  father: {
+    flex: 1,
+    height: '20%',
+    marginTop: 50,
+    marginBottom: 520,
+    borderRadius: 10,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    backgroundColor: '#f55'
+  },
+  son: {
+    flex: 1,
+    height: 80
+  },
+  leftRightBorder: {
+    borderRightWidth: 1/PixelRatio.get(),
+    borderLeftWidth: 1/PixelRatio.get(),
+    borderColor: '#fff'
+  },
+  center: {
+    textAlign: 'center'
+  },
+  bottomBorder: {
+    borderBottomWidth: 1/PixelRatio.get(),
+    borderColor: '#fff'
   }
 });
 
