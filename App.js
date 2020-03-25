@@ -20,7 +20,11 @@ import {
   Image,
   FlatList,
   SectionList,
-  PixelRatio
+  PixelRatio,
+  BackHandler,
+  ToastAndroid,
+  Modal,
+  TouchableHighlight
 } from 'react-native';
 
 import {
@@ -259,6 +263,25 @@ class MyAppHeaderText extends React.Component {
 //    <Text>正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字正文文字</Text>
 //</View>
 class Adv extends React.Component {
+      componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+      }
+
+      componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+      }
+
+      handleBackPress = () => {
+        console.log('点击了推出按钮')
+        ToastAndroid.showWithGravityAndOffset(
+          "点击了退出按钮!",
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+          0,
+          0
+        );
+        return true;
+      }
     render () {
         return (
             <>
@@ -286,13 +309,69 @@ class Adv extends React.Component {
         )
     }
 }
+class ModalExample extends React.Component {
+  state = {
+    modalVisible: false
+  };
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  render() {
+    return (
+      <View style={{ marginTop: 22 }}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={[styles.modalBox, {marginTop: 22} ]}>
+            <View>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+              <Text>Hello World!</Text>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}
+              >
+                <Text>Hide Modal</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+
+        <TouchableHighlight
+          onPress={() => {
+            this.setModalVisible(true);
+          }}
+        >
+          <Text>Show Modal</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
 const App: () => React$Node = () => {
-  return (
-    <>
-        <Adv />
-    </>
-  );
-};
+      return (
+        <>
+            <ModalExample />
+            <Adv />
+        </>
+      );
+    };
 const styles1 = StyleSheet.create({
        title:　{
            fontSize: 30,
@@ -324,8 +403,6 @@ const styles = StyleSheet.create({
   father: {
     flex: 1,
     height: '20%',
-    marginTop: 50,
-    marginBottom: 520,
     borderRadius: 10,
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -346,6 +423,13 @@ const styles = StyleSheet.create({
   bottomBorder: {
     borderBottomWidth: 1/PixelRatio.get(),
     borderColor: '#fff'
+  },
+  modalBox: {
+    height: 300,
+    width: '100%',
+    backgroundColor: '#ececec',
+    position: 'fixed',
+    bottom: 0
   }
 });
 
