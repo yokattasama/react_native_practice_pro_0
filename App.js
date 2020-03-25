@@ -342,13 +342,16 @@ class ModalExample extends React.Component {
               <Text>Hello World!</Text>
               <Text>Hello World!</Text>
 
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}
-              >
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
+              <View style={{flex: 1, height: 300, marginTop: 20, width: '100%', flexDirection: 'row',justifyContent: 'center', alignItems: 'center', backgroundColor: 'blue'}}>
+                 <TouchableHighlight
+                    style={[{flex: 1, height: 30, width: 80, backgroundColor: 'aqua', borderRadius: 10, borderWidth: 1/PixelRatio.get()}]}
+                    onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                    }}
+                  >
+                    <Text style={[{textAlign: 'center'}]}>Hide Modal</Text>
+                  </TouchableHighlight>
+              </View>
             </View>
           </View>
         </Modal>
@@ -428,7 +431,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: '100%',
     backgroundColor: '#ececec',
-    position: 'fixed',
+    position: 'absolute',
     bottom: 0
   }
 });
