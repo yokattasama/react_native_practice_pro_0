@@ -317,9 +317,19 @@ class ModalExample extends React.Component {
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }
+  onPressLearnMore() {
+    Alert.alert('哈哈哈哈哈哈')
+  }
 
   render() {
     return (
+    <>
+        <Button
+           onPress={this.onPressLearnMore}
+           title="Learn More"
+           color="#841584"
+           accessibilityLabel="Learn more about this purple button"
+         />
       <View style={{ marginTop: 22 }}>
         <Modal
           animationType="slide"
@@ -332,46 +342,39 @@ class ModalExample extends React.Component {
           <View style={[styles.modalBox, {marginTop: 22} ]}>
             <View>
               <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-              <Text>Hello World!</Text>
-
-              <View style={{flex: 1, height: 300, marginTop: 20, width: '100%', flexDirection: 'row',justifyContent: 'center', alignItems: 'center', backgroundColor: 'blue'}}>
-                 <TouchableHighlight
-                    style={[{flex: 1, height: 30, width: 80, backgroundColor: 'aqua', borderRadius: 10, borderWidth: 1/PixelRatio.get()}]}
-                    onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
-                    }}
-                  >
-                    <Text style={[{textAlign: 'center'}]}>Hide Modal</Text>
-                  </TouchableHighlight>
-              </View>
+              <TouchableHighlight
+                 style={[{marginRight: 'auto',marginLeft: 'auto', height: 30, width: 80, backgroundColor: 'aqua', borderRadius: 10, borderWidth: 1/PixelRatio.get()}]}
+                 underlayColor={'#f55'}
+                 onPress={() => {
+                   this.setModalVisible(!this.state.modalVisible);
+                 }}
+               >
+                 <Text style={[{textAlign: 'center'}]}>隐藏模态框</Text>
+               </TouchableHighlight>
             </View>
           </View>
         </Modal>
-
-        <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(true);
-          }}
-        >
-          <Text>Show Modal</Text>
-        </TouchableHighlight>
+            <TouchableHighlight
+              underlayColor={'green'}
+              onPress={() => {
+                this.setModalVisible(true);
+              }}
+              style={[{marginRight: 'auto',marginLeft: 'auto', height: 30, width: 80, backgroundColor: 'aqua', borderRadius: 10, borderWidth: 1/PixelRatio.get()}]}
+              >
+                <Text>
+                    展示模态框
+                </Text>
+            </TouchableHighlight>
       </View>
+      </>
     );
   }
 }
+//<Adv />
 const App: () => React$Node = () => {
       return (
         <>
             <ModalExample />
-            <Adv />
         </>
       );
     };
