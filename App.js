@@ -5,7 +5,7 @@
  * @format
  * @flow
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import {
   SafeAreaView,
@@ -26,7 +26,8 @@ import {
   Modal,
   TouchableHighlight
 } from 'react-native';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   Header,
   LearnMoreLinks,
@@ -370,11 +371,66 @@ class ModalExample extends React.Component {
     );
   }
 }
+class HomeScreen extends React.Component {
+    componentDidMount () {
+//        console.log(this.props)
+    }
+    render () {
+//        console.log(this.props)
+
+        const { navigation } = this.props
+
+        return (
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <Text> 这是首页 </Text>
+                <Button
+                    title="点击前往详情页"
+                    onPress={() => {
+                        navigation.navigate('Detail')
+                    }}
+                ></Button>
+            </View>
+        )
+    }
+}
+
+class DetailScreen extends React.Component {
+    render () {
+        const { navigation } = this.props
+        return (
+            <>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around',height: '100%', position: 'relative'}}>
+                    <Text style={{ flex: 1, position: 'absolute', top: 20}}>这是详情页</Text>
+                    <View style={[{ position: 'absolute', bottom: 0, height: '50%', width: '100%', backgroundColor: '#ccc'}]}>
+                        <View style={[{ width: '100%', flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}]}>
+                            <View
+                               style={styles.btn}
+                             ><Text onPress={() => navigation.push('Detail')}>点击继续前往详情页</Text></View>
+                             <View
+                               style={styles.btn}
+                             ><Text onPress={() => navigation.navigate('Home')}>点击回到首页</Text></View>
+                             <View
+                               style={styles.btn}
+                             ><Text onPress={() => navigation.goBack()}>点击回到上一页</Text></View>
+                        </View>
+                    </View>
+                </View>
+            </>
+        )
+    }
+}
+const Stack = createStackNavigator()
+
 //<Adv />
 const App: () => React$Node = () => {
       return (
         <>
-            <ModalExample />
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen name='Home' component={HomeScreen} />
+                    <Stack.Screen name='Detail' component={DetailScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
         </>
       );
     };
@@ -386,6 +442,17 @@ const styles1 = StyleSheet.create({
        }
    })
 const styles = StyleSheet.create({
+  btn: {
+    color: '#000',
+    backgroundColor: '#fff',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  btnBox: {
+    transform: [{translateX: '50'}, {translateY: '50'}]
+  },
   scrollView: {
     backgroundColor: Colors.lighter,
   },
