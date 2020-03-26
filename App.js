@@ -389,6 +389,12 @@ class HomeScreen extends React.Component {
                         navigation.navigate('Detail')
                     }}
                 ></Button>
+                <Button
+                    title="点击前往列表页"
+                    onPress={() => {
+                        navigation.navigate('List')
+                    }}
+                ></Button>
             </View>
         )
     }
@@ -419,16 +425,50 @@ class DetailScreen extends React.Component {
         )
     }
 }
+class CustomHeader extends React.Component {
+    render () {
+        return(
+            <View style={[{ flex: 0, justifyContent: 'center', alignItems: 'center',height: '100%', width: '100%' }]}>
+                <Text>我是自定义页面头部</Text>
+            </View>
+        )
+    }
+}
+class List extends React.Component {
+    render () {
+        return (
+            <View style={{ flex: 0, justifyContent: 'center', alignItems: 'center', height: 200}}>
+                <Text>这是列表页面</Text>
+            </View>
+        )
+    }
+}
 const Stack = createStackNavigator()
-
 //<Adv />
 const App: () => React$Node = () => {
       return (
         <>
             <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name='Home' component={HomeScreen} />
+                <Stack.Navigator
+                    screenOptions={{
+                        headerTitleAlign: 'center',
+                        headerStyle: {
+                          backgroundColor: '#f4511e',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                          fontWeight: 'bold',
+                        },
+                      }}
+                    >
+                    <Stack.Screen
+                        name='Home'
+                        component={HomeScreen}
+                        options={{
+                            title: '首页'
+                            }}/>
                     <Stack.Screen name='Detail' component={DetailScreen} />
+                    <Stack.Screen name='List' component={List} options={{ headerTitle: props => <CustomHeader {...props} />, headerRight: () => <Button onPress={() => alert('This is a button!')} title="三" color="#000" /> }} />
                 </Stack.Navigator>
             </NavigationContainer>
         </>
