@@ -36,6 +36,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Home from './home.js'
 class ButtonBox extends React.Component {
     handlePress()  {
         Alert.alert('嗨')
@@ -384,6 +385,7 @@ class HomeScreen extends React.Component {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                 <Text> 这是首页 </Text>
+                <Home />
                 <Button
                     title="点击前往详情页"
                     onPress={() => {

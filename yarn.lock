@@ -1055,6 +1055,11 @@
   resolved "https://registry.npm.taobao.org/@react-native-community/masked-view/download/@react-native-community/masked-view-0.1.7.tgz#a65ce0702f55cb67fd777995de6fc7b3e5781903"
   integrity sha1-plzgcC9Vy2f9d3mV3m/Hs+V4GQM=
 
+"@react-native-community/progress-bar-android@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/@react-native-community/progress-bar-android/download/@react-native-community/progress-bar-android-1.0.1.tgz#0cf4b256040ce503d313a1199ec192f89cbe85dd"
+  integrity sha1-DPSyVgQM5QPTE6EZnsGS+Jy+hd0=
+
 "@react-navigation/core@^5.3.1":
   version "5.3.1"
   resolved "https://registry.npm.taobao.org/@react-navigation/core/download/@react-navigation/core-5.3.1.tgz#8940c3d2aa953952dba6515a48e3adbc0bf73f01"
