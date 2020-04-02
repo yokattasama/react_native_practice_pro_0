@@ -1060,6 +1060,11 @@
   resolved "https://registry.npm.taobao.org/@react-native-community/progress-bar-android/download/@react-native-community/progress-bar-android-1.0.1.tgz#0cf4b256040ce503d313a1199ec192f89cbe85dd"
   integrity sha1-DPSyVgQM5QPTE6EZnsGS+Jy+hd0=
 
+"@react-native-community/viewpager@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.npm.taobao.org/@react-native-community/viewpager/download/@react-native-community/viewpager-3.3.0.tgz#e613747a43a31a6f3278f817ba96fdaaa7941f23"
+  integrity sha1-5hN0ekOjGm8yePgXupb9qqeUHyM=
+
 "@react-navigation/core@^5.3.1":
   version "5.3.1"
   resolved "https://registry.npm.taobao.org/@react-navigation/core/download/@react-navigation/core-5.3.1.tgz#8940c3d2aa953952dba6515a48e3adbc0bf73f01"

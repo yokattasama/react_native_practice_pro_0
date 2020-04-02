@@ -29,6 +29,7 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import ViewPager from '@react-native-community/viewpager';
 import {
   Header,
   LearnMoreLinks,
@@ -37,6 +38,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Home from './home.js'
+import Drawer from './drawer.js'
 class ButtonBox extends React.Component {
     handlePress()  {
         Alert.alert('嗨')
@@ -383,9 +385,9 @@ class HomeScreen extends React.Component {
         const { navigation } = this.props
 
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <ScrollView>
                 <Text> 这是首页 </Text>
-                <Home />
+                <Drawer />
                 <Button
                     title="点击前往详情页"
                     onPress={() => {
@@ -398,7 +400,13 @@ class HomeScreen extends React.Component {
                         navigation.navigate('List')
                     }}
                 ></Button>
-            </View>
+                <Button
+                    title="点击前往空白页"
+                    onPress={() => {
+                        navigation.navigate('Blank')
+                    }}
+                ></Button>
+            </ScrollView>
         )
     }
 }
@@ -471,6 +479,22 @@ class List extends React.Component {
         )
     }
 }
+class Blank extends React.Component {
+    render () {
+        return (
+            <>
+                <ViewPager
+                    initialPage={0}
+                    style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+                >
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text style={{ color: '#f55' }}>这是第一页</Text></View>
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text style={{ color: '#f55' }}>这是第二页</Text></View>
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text style={{ color: '#f55' }}>这是第三页</Text></View>
+                </ViewPager>
+            </>
+        )
+    }
+}
 const Stack = createStackNavigator()
 //<Adv />
 const App: () => React$Node = () => {
@@ -496,6 +520,7 @@ const App: () => React$Node = () => {
                             title: '首页'
                             }}/>
                     <Stack.Screen name='Detail' component={DetailScreen} />
+                    <Stack.Screen name='Blank' component={Blank} />
                     <Stack.Screen name='List' component={List} options={{ headerTitle: props => <CustomHeader {...props} />, headerRight: () => <Button onPress={() => alert('This is a button!')} title="三" color="#000" /> }} />
                 </Stack.Navigator>
             </NavigationContainer>
